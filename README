@@ -1,127 +1,96 @@
-PRUEBA DE OTRO CLIENTE IRC (WEECHAT):
+                  AN INTER RELATED CHAT (SERVER):
 
-ABRIR WEECHAT CON DOCKER
+- You could start it with "make" and then "./ircserv 6667 Password".
 
-docker run -ti weechat/weechat
+- You could connect to it by "nc -c 127.0.0.1 6667" and then would be able to do:
 
-EN TERMINAL CONSULTAR LA IP QUE EMPLEA DOCKER:
+· NICK
+(to define your nick)
+    "NICK v"
 
-ifconfig | grep inet
+· PASS
+(to join with the server password)
+    "PASS Password"
 
-(*y copiamos 1º inet despues de las inet6, una con netmask y brodcast a continuación) (TAMBIEN SE PUEDE EMPLEAR host.docker.internal)
+· USER
+(to define the user's parameters)
+    "USER valarcon 6667 127.0.0.1 victor"
 
-EN WEECHAT:
+· JOIN
+(to join a specific channel)
+    "JOIN 6667"
 
-AÑADIR SERVIDOR:
+· PING
+(Simple test that only has a phatic function or to measure the time it takes for data packets to travel)
 
-/server add CUALQUIERNOMBRE (I.P.consultada)/6667 -tls
+· PRIVMSG
+(a private message to an user)
 
-IMPORTANTE:
+· NOTICE
+(a message to a target [user or channel])
 
-se desactiva el tls: /set irc.server_default.tls off
+. LIST 
+(shows the channels and topics)
 
-Se introduce el password: /set irc.server.CUALQUIERNOMBRE.password (PASSWORDPUESTAEN./IRCSERV_6667_AQUI)
+. PART
+(to leave a channel)
 
-CONFIGURAR AL GUSTO:
+. QUIT
+(to stop the connection with server and quit)
+
+      JUST WITH PRIVILEGES: 
+
+->  MODE
+(changes the configuration of a channel)
+
+   "MODE channelName +/-Flag "TARGETifNEEDED""
+
+- K puts key in a channel ("MODE mychannel +k password" means that to access you must do "JOIN mychannel password")
+- L establishes the limit of clients
+- N disables external messages (that is, +n prevents NOTICEs to the channel)
+- "+b" bans a client, "+t TOPICNAME" creates a topic in the channel, "+i" makes it only accessible by receiving an invitation.
+
+    EX: "MODE 6667 +b userToBan"
+
+-> INVITE Channel Nickname 
+
+
+-> KICK
+(to kick out somebody)
+  "KICK 6667 v : BecauseIhateYou"
+
+
+      TO TEST AT A DIFFERENT CLIENT (WEECHAT):
+
+ - Start Docker Engine and open weechat by it:
+    "docker run -ti weechat/weechat"
+
+ - WATCH THE SERVER'S MACHINE IP:
+    "ifconfig | grep inet"
+(*and we copy the 1st inet after the inet6, one with netmask and brodcast below) (host.docker.internal CAN ALSO BE USED FOR YOUR OWN COMPUTER)
+
+    AT WEECHAT:
+
+ - ADD THE SERVER:
+
+/server add ANYNAME (I.P.consulted)/6667 -tls
+
+ - IMPORTANT STEPS:
+
+desactivate tls: /set irc.server_default.tls off
+
+Insert password: /set irc.server.ANYNAME.password (PASSWORDFROM./IRCSERV_6667_HERE)
+
+ - CONFIGURATE AS YOU WANT:
 
 /set irc.server.libera.username "My user name"
 
 /set irc.server.libera.realname "My real name" ...
 
-CONECTARSE: /connect CUALQUIERNOMBRE
+ - CONECT:
 
-/join "GRUPO"
+/connect ANYNAME
 
-PARA HABLAR A ALGUIEN/ALGO: /query TARGET mensaje
+/join "GROUP"
 
-¿CÓMO USAR EL EJECUTABLE?:
-
-Trás hacer make ejecute en terminal:
-
-./ircserv 6667 Password
-
-Ésto iniciará el servidor y permitirá a los usuarios unirse.
-
-Desde otra terminal y sin finalizar la ejecución anterior podremos unirnos e identificarnos mediante los comandos:
-
-· NC
-
-netcat permite leer y escribir datos entre dos redes.
-
-nc -c 127.0.0.1 6667
-
-· NICK
-
-para definir tu nick o apodo:
-
-NICK v
-
-· PASS
-
-para unirse/logearse
-
-PASS Password
-
-· USER
-
-define las características del usuario
-
-USER valarcon 6667 127.0.0.1 victor
-
-· JOIN
-
-para unirse al canal
-
-JOIN 6667
-
-FINALMENTE PODREMOS EMPLEAR COMANDOS PARA COMUNICARNOS COMO:
-
-· PING
-
-Prueba simple que solo tiene función fática (o de medida del tiempo que tardan en viajar los paquetes de datos).
-
-· PRIVMSG
-
-Mensaje privado a un usuario
-
-· NOTICE
-
-Mensaje a un objetivo (canal o usuario)
-
-. LIST Muestra los canales y sus topics, se usa:
-
-"LIST" (PARA TODOS LOS CANALES) "LIST channel channel channel" (PARA CANALES CONCRETOS)
-
-POR ULTIMO CABE DESTACAR:
-
--> EL COMANDO MODE, EMPLEADO PARA FIJAR O ELIMINAR OPCIONES DE UN OBJETIVO
-
-MODE canal +/-Flag "TARGETifNEEDED"
-
-K pone key en un canal ("MODE micanal +k contraseña" hace que para acceder debas hacer "JOIN micanal contraseña") L establece el limite de clientes
-N deshabilita los mensajes externos (es decir +n evita los NOTICE al canal)
-"+b" banea a un client , "+t TOPCO" crea un topic en el canal , "+i" hace que solo se pueda acceder mediante la recepción de un invite
-
-MODE channel flags (user/args)
-
-EJ: MODE 6667 +b usuario
-
--> INVITE Channel Nickname (Relevante para salas con +i)
-
--> PART
-
-Abandona el/los canales especificados
-
-syntax: PART channels "message-optional"
-
--> KICK
-
-echar a alguien
-
-syntax: KICK channel client "message-optional"
-
-KICK 6667 v : expulsado
-
--> QUIT
-
-(...)
+/query TARGET mensaje
