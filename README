@@ -65,33 +65,36 @@
 
                 TO TEST AT A DIFFERENT CLIENT (WEECHAT):
 
- - Start Docker Engine and open weechat by it:
+         - START DOCKER ENGINE AND RUN WEECHAT WITH IT:
     "docker run -ti weechat/weechat"
 
- - WATCH THE SERVER'S MACHINE IP:
+         - WATCH THE SERVER'S MACHINE IP:
     "ifconfig | grep inet"
 (*and we copy the 1st inet after the inet6, one with netmask and brodcast below) (host.docker.internal CAN ALSO BE USED FOR YOUR OWN COMPUTER)
 
-                  AT WEECHAT:
 
- - ADD THE SERVER:
+                  AT WEECHAT:
+-
+
+
+         - ADD THE SERVER:
 
 /server add ANYNAME (I.P.consulted)/6667 -tls
 
- - IMPORTANT STEPS:
+         - IMPORTANT STEPS:
 
 desactivate tls: /set irc.server_default.tls off
                 /set irc.server_default.tls_verify off
 
 Insert password: /set irc.server.ANYNAME.password (PASSWORDFROM./IRCSERV_6667_HERE)
 
- - CONFIGURATE AS YOU WANT:
+         - CONFIGURATE AS YOU WANT:
 
 /set irc.server.libera.username "My user name"
 
 /set irc.server.libera.realname "My real name" ...
 
- - CONECT:
+         - CONECT:
 
 /connect ANYNAME
 
