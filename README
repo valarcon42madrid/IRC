@@ -81,6 +81,7 @@
  - IMPORTANT STEPS:
 
 desactivate tls: /set irc.server_default.tls off
+                /set irc.server_default.tls_verify off
 
 Insert password: /set irc.server.ANYNAME.password (PASSWORDFROM./IRCSERV_6667_HERE)
 
