@@ -63,7 +63,7 @@
 
 
 
-                TO TEST AT A DIFFERENT CLIENT (WEECHAT):
+               👁‍🗨 TO TEST AT A DIFFERENT CLIENT (WEECHAT):
 
          - START DOCKER ENGINE AND RUN WEECHAT WITH IT:
     "docker run -ti weechat/weechat"
