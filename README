@@ -60,7 +60,10 @@
   "KICK 6667 v : BecauseIhateYou"
 
 
-      TO TEST AT A DIFFERENT CLIENT (WEECHAT):
+
+
+
+                TO TEST AT A DIFFERENT CLIENT (WEECHAT):
 
  - Start Docker Engine and open weechat by it:
     "docker run -ti weechat/weechat"
@@ -69,7 +72,7 @@
     "ifconfig | grep inet"
 (*and we copy the 1st inet after the inet6, one with netmask and brodcast below) (host.docker.internal CAN ALSO BE USED FOR YOUR OWN COMPUTER)
 
-    AT WEECHAT:
+                  AT WEECHAT:
 
  - ADD THE SERVER:
 
